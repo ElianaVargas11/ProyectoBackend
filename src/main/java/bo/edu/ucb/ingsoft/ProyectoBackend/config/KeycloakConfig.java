@@ -20,17 +20,19 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class KeycloakConfig extends KeycloakWebSecurityConfigurerAdapter {
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        KeycloakAuthenticationProvider provider = new KeycloakAuthenticationProvider();
-        provider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
-        auth.authenticationProvider(provider);
-    }
     @Bean
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-              return new NullAuthenticatedSessionStrategy();
+        return new NullAuthenticatedSessionStrategy();
     }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        KeycloakAuthenticationProvider provider= new KeycloakAuthenticationProvider();
+        provider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
+        auth.authenticationProvider(provider);
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
@@ -40,8 +42,9 @@ public class KeycloakConfig extends KeycloakWebSecurityConfigurerAdapter {
                 .anyRequest().permitAll();
         http.csrf().disable();
     }
+
     @Bean
     public KeycloakConfigResolver keycloakConfigResolver(){
-           return new KeycloakSpringBootConfigResolver();
+        return new KeycloakSpringBootConfigResolver();
     }
 }

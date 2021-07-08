@@ -1,35 +1,58 @@
 package bo.edu.ucb.ingsoft.ProyectoBackend.dto;
 
-public class Usuario1 {
-    private Integer id;
-    private String nombre;
+import java.io.Serializable;
 
-    public Usuario1() {
+public class Usuario1 implements Serializable {
+    private String username;
+    private  String email;
+    private  String firstName;
+    private  String lastName;
+    private String password;
+    private static final long serialVersionUID=-1L;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public Usuario1(String nombre) {
-        this.nombre = nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public Usuario1(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Integer getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
 }
